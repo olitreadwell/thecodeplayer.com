@@ -45,6 +45,16 @@ body {
     width: 100%;
     margin: 0 10%;
 }
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+/*inputs*/
+#msform input,
+#msform textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+}
 
 /*headings*/
 .fs-title {
@@ -100,4 +110,20 @@ body {
     height: 2px;
     background: white;
     position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1; /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green */
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #27AE60;
+    color: white;
 }
