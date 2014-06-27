@@ -54,7 +54,17 @@ body {
 #msform textarea {
     padding: 15px;
     border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
 }
+
+/*buttons*/
 
 /*headings*/
 .fs-title {
