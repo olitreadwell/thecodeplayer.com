@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     // Lets save the cell width in a variable for easy control
     var cw = 10;
-    var d = "right"; //default direction
+    var d; //default direction
     var food;
     var score;
 
@@ -18,7 +18,7 @@ $(document).ready(function(){
     function init(){
             d = "right";
             createSnake();
-            createFood();
+            createFood(); // Now we can see the food particle
             // finally lets display the score
             score = 0;
             // Lets move the snake now using a timer which will trigger the pain function
@@ -26,7 +26,6 @@ $(document).ready(function(){
                 if(typeof gameLoop != "undefined") clearInterval(gameLoop);
                 gameLoop = setInterval(paint, 60);
         }
-
         init();
 
 
@@ -50,10 +49,10 @@ $(document).ready(function(){
         // Because there are 45(450/10) positions across the rows and columns
     }
 
-    // Lets pain the snake now
+    // Lets paint the snake now
     function paint()    {
         // To avoid the snake trail we need to pain the BG on every frame
-        // Lets pain the canvas now
+        // Lets paint the canvas now
         ctx.fillStyle = "white";
         ctx.fillRect(0,0, w, h);
         ctx.strokeStyle = "black";
@@ -61,7 +60,7 @@ $(document).ready(function(){
 
         // The movement code for the snake to come here.
         // The logic is simple
-        // Pop out the tail cell and place it infront of the head cell
+        // Pop out the tail cell and place it in front of the head cell
         var nx = snakeArray[0].x;
         var ny = snakeArray[0].y;
         // These were the position of the head cell.
@@ -102,11 +101,10 @@ $(document).ready(function(){
 
         snakeArray.unshift(tail); // puts back the tail as the first cell
 
-        for(var i=0; i < snakeArray.length; i++)
-        {
+        for(var i=0; i < snakeArray.length; i++)        {
             var c = snakeArray[i];
             // Lets paint 10px wide cells
-            paintCell(food.x, food.y);
+            paintCell(c.x, c.y);
         }
 
         // Lets paint the food
@@ -119,11 +117,10 @@ $(document).ready(function(){
 
     // Lets first create a generic function to draw cells
     function paintCell(x, y){
-
         ctx.fillStyle = "blue";
-        ctx.fillRect(c.x*cw, c.y*cw, cw, cw);
+        ctx.fillRect(x*cw, y*cw, cw, cw);
         ctx.strokeStyle = "white";
-        ctx.strokeRect(c.x*cw, c.y*cw, cw, cw);
+        ctx.strokeRect(x*cw, y*cw, cw, cw);
 
     }
 
