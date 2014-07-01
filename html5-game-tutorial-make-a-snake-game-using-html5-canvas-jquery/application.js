@@ -33,6 +33,21 @@ $(document).ready(function(){
     // Lets pain the snake now
     function paint()
     {
+        // To avoid the snake trail we need to pain the BG on every frame
+
+        // The movement code for the snake to come here.
+        // The logic is simple
+        // Pop out the tail cell and place it infront of the head cell
+        var nx = snakeArray[0].x;
+        var ny = snakeArray[0].y;
+        // These were the position of the head cell.
+        // We will increment it to get the new head position
+        nx++;
+
+        var tail = snakeArray.pop(); //pops out the last cell
+        tail.x = nx
+        snakeArray.unshift(tail);
+
         for(var i=0; i < snakeArray.length; i++)
         {
             var c = snakeArray[i];
@@ -43,5 +58,10 @@ $(document).ready(function(){
             ctx.strokeRect(c.x*cw, c.y*cw, cw, cw);
         }
     }
+    // Lets move the snake now using a timer which will trigger the pain function
+    // every 60ms
+    game_loop = setInterval(paint, 60);
+
+
 paint();
 })
